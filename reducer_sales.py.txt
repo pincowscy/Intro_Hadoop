@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+# Total Count of Sales and Total of Sales
+
+import sys
+
+
+salesCount = 0
+salesTotal = 0
+oldKey = None
+
+# It will be in the format key\tval
+# Where key is the store name, val is the sale amount
+
+for line in sys.stdin:
+    data_mapped = line.strip().split("\t")
+    if len(data_mapped) != 2:
+        # Something has gone wrong. Skip this line.
+        continue
+
+    thisKey, thisSale = data_mapped
+
+    if oldKey and oldKey != thisKey:
+        oldKey = thisKey;
+        
+
+    oldKey = thisKey
+    salesTotal += float(thisSale)
+    salesCount += 1
+
+if oldKey != None:
+    print salesCount, "\t", salesTotal
